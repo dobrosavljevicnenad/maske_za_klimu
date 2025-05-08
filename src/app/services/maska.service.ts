@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,110 +14,31 @@ export class MaskaService {
   private cart = new BehaviorSubject<Map<string, { productId: number, quantity: number, boja: string }>>(this.getCart());
   cart$ = this.cart.asObservable();
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   maske = [
-    {
-      id: 1,
-      naziv: 'Zaštitna maska za spoljnu jedinicu - Model 1',
-      opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-      cena: 12490,
-      slika: ['assets/maska4_4.jpg', 'assets/chatgpt_generated_pic.png', 'assets/maska4_5.webp'], // 'assets/maska4.jpg', 'assets/maska4_1.jpg',
-      popust: 0,
-      boja: 'Crna',
-    },
-    {
-      id: 2,
-      naziv: 'Zaštitna maska za spoljnu jedinicu - Model 2',
-      opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-      cena: 12490,
-      slika: ['assets/maska2_1.jpg', 'assets/maska2.jpg'],
-      popust: 0,
-      boja: 'Crna',
-    },
-    // {
-    //   id: 3,
-    //   naziv: 'Zaštitna maska za spoljnu jedinicu - Model 3',
-    //   opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-    //   cena: 12999,
-    //   slika: ['assets/maska3_1.jpg', 'assets/maska3.jpg'],
-    //   popust: 15,
-    //   boja: 'Crna',
-    // },
-    {
-      id: 4,
-      naziv: 'Zaštitna maska za spoljnu jedinicu - Model 3',
-      opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-      cena: 12490,
-      slika: ['assets/maska1_3.jpg','assets/maska1_2.webp', 'assets/maska1_1.webp', 'assets/maska1.jpg', 'assets/maska1_1.jpg'],
-      popust: 0,
-      boja: 'Crna',
-    },
-    // {
-    //   id: 5,
-    //   naziv: 'Zaštitna maska za spoljnu jedinicu - Model 5',
-    //   opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-    //   cena: 12999,
-    //   slika: ['assets/maska5.jpg', 'assets/maska5_1.png'],
-    //   popust: 15,
-    //   boja: 'Crna',
-    // },
-    {
-      id: 5,
-      naziv: 'Zaštitna maska za spoljnu jedinicu - Model 4',
-      opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-      cena: 12490,
-      slika: ['assets/maska20.jpg', 'assets/maska4_1.jpg'],
-      popust: 0,
-      boja: 'Crna',
-    },
-    {
-      id: 6,
-      naziv: 'Zaštitna maska za spoljnu jedinicu - Model 5',
-      opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-      cena: 12490,
-      slika: ['assets/maska6.png'],
-      popust: 0,
-      boja: 'Crna',
-    },
-    // {
-    //   id:7,
-    //   naziv: 'Zaštitna maska za spoljnu jedinicu - Model 7',
-    //   opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-    //   cena: 12999,
-    //   slika: ['assets/maska7.jpg'],
-    //   popust: 15,
-    //   boja: 'Crna',
-    // },
-    // {
-    //   id: 8,
-    //   naziv: 'Zaštitna maska za spoljnu jedinicu - Model 8',
-    //   opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-    //   cena: 12999,
-    //   slika: ['assets/maska8.webp'],
-    //   popust: 15,
-    //   boja: 'Crna',
-    // },
-    {
-      id: 9,
-      naziv: 'Zaštitna maska za spoljnu jedinicu - Model 6',
-      opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.',
-      cena: 12490,
-      slika: ['assets/maska9.jpg'],
-      popust: 0,
-      boja: 'Crna',
-    }
+    { id: 1, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 1', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska4_4.jpg'], popust: 0, boja: 'Crna' },
+    { id: 2, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 2', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska2_1.jpg'], popust: 0, boja: 'Crna' },
+    { id: 4, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 3', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska1_3.jpg'], popust: 0, boja: 'Crna' },
+    { id: 5, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 4', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska20.jpg'], popust: 0, boja: 'Crna' },
+    { id: 6, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 5', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska6.png'], popust: 0, boja: 'Crna' },
+    { id: 9, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 6', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska9.jpg'], popust: 0, boja: 'Crna' }
   ];
 
   /*** --- WISHLIST METODE --- ***/
   saveWishlist(wishlist: Set<number>) {
-    localStorage.setItem('wishlist', JSON.stringify(Array.from(wishlist)));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('wishlist', JSON.stringify(Array.from(wishlist)));
+    }
     this.wishlist.next(wishlist);
   }
 
   getWishlist(): Set<number> {
-    const wishlist = localStorage.getItem('wishlist');
-    return wishlist ? new Set(JSON.parse(wishlist)) : new Set();
+    if (isPlatformBrowser(this.platformId)) {
+      const wishlist = localStorage.getItem('wishlist');
+      return wishlist ? new Set(JSON.parse(wishlist)) : new Set();
+    }
+    return new Set(); // Ako je server-side, vrati praznu kolekciju
   }
 
   toggleWishlist(productId: number) {
@@ -132,15 +54,19 @@ export class MaskaService {
   /*** --- CART METODE --- ***/
 
   saveCart(cart: Map<string, { productId: number, quantity: number, boja: string }>) {
-    localStorage.setItem('cart', JSON.stringify(Array.from(cart.entries())));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('cart', JSON.stringify(Array.from(cart.entries())));
+    }
     this.cart.next(cart);
   }
 
   getCart(): Map<string, { productId: number, quantity: number, boja: string }> {
-    const cartData = localStorage.getItem('cart');
-    return cartData ? new Map(JSON.parse(cartData)) : new Map();
+    if (isPlatformBrowser(this.platformId)) {
+      const cartData = localStorage.getItem('cart');
+      return cartData ? new Map(JSON.parse(cartData)) : new Map();
+    }
+    return new Map(); // Ako je server-side, vrati praznu Mapu
   }
-
 
   addToCart(productId: number, boja: string, kolicina: number = 1) {
     const cart = this.getCart();
@@ -151,7 +77,6 @@ export class MaskaService {
     cart.set(key, { productId, quantity: currentQuantity + kolicina, boja });
     this.saveCart(cart);
   }
-
 
   removeFromCart(productId: number, boja: string) {
     const cart = this.getCart();
@@ -186,7 +111,6 @@ export class MaskaService {
     this.saveCart(cart);
   }
 
-
   getCartProducts() {
     const cart = this.getCart();
     const products: any[] = [];
@@ -206,14 +130,13 @@ export class MaskaService {
     return products;
   }
 
-
   getTotalPrice(): number {
     return this.getCartProducts().reduce((total, product) => {
       return total + this.getDiscountPrice(product) * product.kolicina;
     }, 0);
   }
 
-  getDiscountPrice(product: any):any {
+  getDiscountPrice(product: any): any {
     return (product.cena - (product.cena * product.popust) / 100).toFixed(0);
   }
 
@@ -240,5 +163,4 @@ export class MaskaService {
   wishlistCount$ = this.wishlist$.pipe(
     map(wishlist => wishlist.size)
   );
-
 }
