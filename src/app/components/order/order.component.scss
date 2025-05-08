@@ -1,0 +1,17 @@
+/* order.component.scss */
+.container {
+  max-width: 800px;
+}
+
+input {
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+button[disabled] {
+  background-color: #ddd;
+}

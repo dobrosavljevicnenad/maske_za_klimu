@@ -56,14 +56,13 @@
 
     <!-- Desna strana: info -->
     <div class="flex-1">
-      <h1 class="text-3xl font-bold font-serif italic mb-4">{{ maska.naziv }}</h1>
-      <div class="text-lg">
-        <p class="mb-2">{{ maska.opis }}</p>
-        <p class="mb-1"><strong>Cena:</strong> {{ maska.cena }} RSD</p>
+      <h1 class="!text-3xl !font-bold !font-serif !italic !mb-4">{{ maska.naziv }}</h1>
+      <div class="!text-lg">
+        <p class="!mb-2">{{ maska.opis }}</p>
+        <p class="!mb-1"><strong>Cena:</strong> {{ maska.cena }} RSD</p>
         <p><strong>Popust:</strong>
-          <p><strong>Popust:</strong>
-            <span *ngIf="maska.popust > 0; else noDiscount">{{ maska.popust }}%</span>
-            <ng-template #noDiscount>/</ng-template>
+          <span *ngIf="maska.popust > 0; else noDiscount">{{ maska.popust }}%</span>
+          <ng-template #noDiscount>/</ng-template>
         </p>
         <p class="mt-2 text-red-500 font-semibold">
           Ukupna cena: {{ (maska.cena - (maska.cena * maska.popust) / 100).toFixed(0) }} RSD
@@ -71,9 +70,9 @@
       </div>
 
       <!-- Izbor boje -->
-      <div class="mt-6 flex flex-wrap items-center gap-4">
+      <div class="!mt-6 !flex !flex-wrap !items-center !gap-4">
 
-        <span class="font-semibold font-serif italic">Izaberite boju:</span>
+        <span class="!font-semibold !font-serif !italic">Izaberite boju:</span>
 
         <label class="flex items-center gap-1">
           <input type="radio" name="boja" value="Crna" [(ngModel)]="izabranaBoja" class="radio-button" />

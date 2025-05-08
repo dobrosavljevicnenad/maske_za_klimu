@@ -1,6 +1,6 @@
 <div class="container mx-auto px-6 py-12 max-w-3xl">
   <div class="bg-white shadow-xl rounded-2xl p-10 border border-gray-200">
-    <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">Završi narudžbinu</h2>
+    <h2 class="!text-4xl !font-extrabold !text-gray-900 !mb-8 !text-center">Završi narudžbinu</h2>
 
     <form (ngSubmit)="submitOrder()" #orderForm="ngForm" class="space-y-6">
       <!-- Podaci o korisniku -->
@@ -37,9 +37,9 @@
           <div *ngFor="let product of cartProducts" class="flex items-center bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             <img class="w-20 h-20 object-cover rounded-lg" [src]="product.slika[0]" alt="Product Image">
             <div class="ml-4 flex-1">
-              <h3 class="text-lg font-semibold">{{ product.naziv }}</h3>
-              <p class="text-gray-500 mt-1">Boja: {{ product.boja }}</p>
-              <p class="text-gray-600">{{ getDiscountPrice(product) * product.kolicina }} RSD</p>
+              <h3 class="!text-lg !font-semibold">{{ product.naziv }}</h3>
+              <p class="!text-gray-500 !mt-1">Boja: {{ product.boja }}</p>
+              <p class="!text-gray-600">{{ getDiscountPrice(product) * product.kolicina }} RSD</p>
             </div>
           </div>
         </div>

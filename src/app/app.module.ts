@@ -6,7 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +18,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CommonModule } from '@angular/common';
 import { OrderComponent } from './components/order/order.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,16 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     MatIconModule,
     MatDialogModule,
     CommonModule,
-    RouterLink
+    RouterLink,
+    ToastrModule.forRoot({
+        positionClass: 'toast-top-center',
+        timeOut: 2000, // automatski nestane posle 2 sekunde
+        progressBar: true,
+        closeButton: false
+      }),
   ],
 
-  providers: [],
+  providers: [provideAnimations()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

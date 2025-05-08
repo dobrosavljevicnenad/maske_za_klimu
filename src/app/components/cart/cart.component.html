@@ -1,24 +1,23 @@
-<div class="container mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold text-gray-900 mb-6">Korpa</h2>
+<div class="!container !mx-auto !px-4 !py-8">
+  <h2 class="!text-3xl !font-bold !text-gray-900 mb-6">Korpa</h2>
 
   <div *ngIf="cartProducts.length === 0" class="text-gray-500 text-lg text-center">
     Nema proizvoda u korpi.
   </div>
 
-  <div *ngIf="cartProducts.length > 0" class="space-y-4">
-    <div *ngFor="let product of cartProducts; let i = index" class="flex items-center bg-white p-4 shadow-md rounded-lg">
-      <img class="w-24 h-24 object-cover rounded-md" [src]="product.slika[0]" alt="Product Image">
-      <div class="ml-4 flex-1">
-        <h3 class="text-lg font-semibold">{{ product.naziv }}</h3>
-        <p class="text-gray-500">{{ getDiscountPrice(product)*product.kolicina }} RSD</p>
-        <!-- Prikaz boje i dugme za izmenu -->
-        <p class="text-gray-500 mt-1">
-          Boja: <span class="font-semibold">{{ product.boja }}</span>
+  <div *ngIf="cartProducts.length > 0" class="!space-y-1">
+    <div *ngFor="let product of cartProducts; let i = index" class="!flex !items-center !bg-white p-4 !shadow-md !rounded-lg">
+      <img class="!w-24 !h-24 !object-cover !rounded-md" [src]="product.slika[0]" alt="Product Image">
+      <div class="!ml-4 !flex-1 space-y-1">
+        <h3 class="!text-lg !font-semibold !mb-1">{{ product.naziv }}</h3>
+        <p class="!text-gray-500">{{ getDiscountPrice(product)*product.kolicina }} RSD</p>
+        <p class="!text-gray-500">
+          Boja: <span class="!font-semibold">{{ product.boja }}</span>
         </p>
 
         <!-- Dugme za prikaz inputa -->
         <button (click)="editingColorIndex === i ? editingColorIndex = null : startEditingColor(i, product.boja)"
-        class="mt-1 text-sm text-blue-600 hover:underline">
+        class="!mt-1 !text-sm !text-blue-600 !hover:underline">
           Izmeni boju
         </button>
 

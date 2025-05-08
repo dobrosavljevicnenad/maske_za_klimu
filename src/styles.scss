@@ -2,5 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
+// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 html, body { height: 100%; }
+html { scroll-behavior: smooth; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-dialog-container {
+  border-radius: 1rem !important;
+}
+
+.strelica {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.strelica-levo {
+  left: 20px;
+}
+
+.strelica-desno {
+  right: 20px;
+}
+
+/* Skrivanje defaultnog kruga i dodavanje custom stilova */
+input[type="radio"].radio-button {
+  -webkit-appearance: none; /* Uklanja default izgled u Webkit browserima */
+  -moz-appearance: none; /* Uklanja default izgled u Firefox-u */
+  appearance: none; /* Uklanja default izgled u svim pretraživačima */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #6b7280; /* Siva boja ivice */
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Kada je radio dugme selektovano (checked) */
+input[type="radio"].radio-button:checked {
+  background-color: #333; /* Tamno siva ili crna boja kada je selektovano */
+  border-color: #333; /* Boja ivice takođe */
+}
+
+/* Krug unutar radio dugmeta kada je selektovano */
+input[type="radio"].radio-button:checked::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white; /* Ovaj krug će biti beli kada je dugme selektovano */
+}
+
+// Centriranje i stilizacija toastr poruka
+#toast-container > div {
+  margin: 0 auto;
+  text-align: center;
+  width: fit-content;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.2rem;  // Povećanje fonta
+  padding: 25px 50px; // Veći padding (više prostora)
+  border-radius: 10px; // Zaobljene ivice
+  min-height: 80px;  // Povećanje visine
+  line-height: 1.5;  // Proširena visina linije
+}
+
+// Ako želiš da bude na vrhu-centar
+#toast-container.toast-top-center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Ako želiš da se pozicija automatski menja, npr. bottom-center
+#toast-container.toast-bottom-center {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Stilovi za različite tipove poruka
+.toast-success {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+.toast-error {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+.toast-info {
+  background-color: #2196f3 !important;
+  color: white !important;
+}
+.toast-warning {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
