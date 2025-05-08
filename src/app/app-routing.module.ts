@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaskaDetailComponent } from './components/maska-detail/maska-detail.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'maska/:id', component: MaskaDetailComponent},
+  { path: 'cart', component: CartComponent},
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({

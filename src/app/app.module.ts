@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { MaskaDetailComponent } from './components/maska-detail/maska-detail.component';
-
+import { CartComponent } from './components/cart/cart.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MaskaDetailComponent } from './components/maska-detail/maska-detail.com
     HomeComponent,
     ProductCardComponent,
     ConfirmationDialogComponent,
-    MaskaDetailComponent
+    MaskaDetailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -33,7 +35,9 @@ import { MaskaDetailComponent } from './components/maska-detail/maska-detail.com
     RouterModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    CommonModule,
+    RouterLink
   ],
 
   providers: [],
