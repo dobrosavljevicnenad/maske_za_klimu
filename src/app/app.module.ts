@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { MaskaDetailComponent } from './components/maska-detail/maska-detail.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     FooterComponent,
     HomeComponent,
     ProductCardComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    MaskaDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -1,0 +1,203 @@
+<div *ngIf="maska" class="p-4">
+  <div class="flex justify-between items-center p-4 bg-gray-100 mb-6">
+    <!-- Leva strelica koja vodi na početnu stranu -->
+    <a [routerLink]="['/']" class="text-3xl text-gray-800 hover:text-gray-600 transition">
+      ←
+    </a>
+
+    <!-- Desne strelice za sledeći/prethodni proizvod -->
+    <div class="flex gap-4">
+      <button
+        (click)="prethodniProizvod()"
+        [disabled]="!imaPrethodni()"
+        class="text-3xl text-gray-800 hover:text-gray-600 transition"
+      >
+        ‹
+      </button>
+      <button
+        (click)="sledeciProizvod()"
+        [disabled]="!imaSledeci()"
+        class="text-3xl text-gray-800 hover:text-gray-600 transition"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-6">
+    <!-- Leva strana: slike -->
+    <div class="flex flex-col items-center">
+      <!-- Glavna slika -->
+      <div class="mb-4 w-[400px] h-[300px] relative">
+        <img
+          [src]="izabranaSlika"
+          alt="Glavna slika"
+          class="absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-md"
+        />
+        <button
+          class="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:scale-105 transition"
+          (click)="otvoriUvelicanuSliku()"
+        >
+          🔍
+        </button>
+      </div>
+
+      <!-- Thumbnail slike -->
+      <div class="flex gap-2 flex-wrap justify-center">
+        <img
+          *ngFor="let slika of maska.slika"
+          [src]="slika"
+          (click)="promeniSliku(slika)"
+          class="w-20 h-20 object-cover rounded cursor-pointer border-2"
+          [ngClass]="{ 'border-blue-500': izabranaSlika === slika, 'border-transparent': izabranaSlika !== slika }"
+        />
+      </div>
+    </div>
+
+    <!-- Desna strana: info -->
+    <div class="flex-1">
+      <h1 class="text-3xl font-bold font-serif italic mb-4">{{ maska.naziv }}</h1>
+      <div class="text-lg">
+        <p class="mb-2">{{ maska.opis }}</p>
+        <p class="mb-1"><strong>Cena:</strong> {{ maska.cena }} RSD</p>
+        <p><strong>Popust:</strong>
+          <p><strong>Popust:</strong>
+            <span *ngIf="maska.popust > 0; else noDiscount">{{ maska.popust }}%</span>
+            <ng-template #noDiscount>/</ng-template>
+        </p>
+        <p class="mt-2 text-red-500 font-semibold">
+          Ukupna cena: {{ (maska.cena - (maska.cena * maska.popust) / 100).toFixed(0) }} RSD
+        </p>
+      </div>
+
+      <!-- Izbor boje -->
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+
+        <span class="font-semibold font-serif italic">Izaberite boju:</span>
+
+        <label class="flex items-center gap-1">
+          <input type="radio" name="boja" value="Crna" [(ngModel)]="izabranaBoja" class="radio-button" />
+          Crna
+        </label>
+        <label class="flex items-center gap-1">
+          <input type="radio" name="boja" value="Bela" [(ngModel)]="izabranaBoja" class="radio-button"/>
+          Bela
+        </label>
+        <label class="flex items-center gap-1">
+          <input type="radio" name="boja" value="Antracit" [(ngModel)]="izabranaBoja" class="radio-button"/>
+          Antracit
+        </label>
+      </div>
+
+      <!-- Polje za unos druge boje -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium font-serif italic mb-1">Ili unesite željenu boju:</label>
+        <input
+          type="text"
+          placeholder="Unesite drugu boju"
+          [(ngModel)]="drugaBoja"
+          class="w-40 p-2 border font-serif italic border-gray-300 rounded"
+        />
+      </div>
+
+
+      <!-- Količina proizvoda + dugme za dodavanje u korpu -->
+      <div class="mt-6 flex items-center gap-6">
+        <button
+          class="text-3xl font-serif italic text-gray-600 hover:text-gray-800 transition"
+          (click)="smanjiKolicinu()"
+          [disabled]="kolicina <= 1"
+        >
+          -
+        </button>
+        <input
+          type="number"
+          [(ngModel)]="kolicina"
+          min="1"
+          class="text-xl font-semibold font-serif italic w-16 text-center"
+          (input)="onKolicinaChange()"
+        />
+        <button
+          class="text-3xl text-gray-600 hover:text-gray-800 transition"
+          (click)="povecajKolicinu()"
+        >
+          +
+        </button>
+
+        <!-- Dugme za dodavanje u korpu -->
+        <button
+          class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-bold font-serif italic hover:scale-125 transition-all"
+          (click)="dodajUKorpu(maska.id)"
+        >
+          Dodaj u korpu
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal za uvećanu sliku -->
+<div
+  *ngIf="uvelicano"
+  class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+  (click)="zatvoriUvelicanuSliku()"
+>
+<!-- Strelica levo -->
+<button
+(click)="prethodnaSlika($event)"
+class="absolute left-4 text-white text-4xl font-bold hover:scale-110 transition"
+[disabled]="!imaPrethodnu()"
+>
+  ‹
+</button>
+  <img
+    [src]="izabranaSlika"
+    alt="Uvećana slika"
+    class="max-w-full max-h-full rounded-lg shadow-lg"
+    (click)="$event.stopPropagation()"
+  />
+
+  <!-- Strelica desno -->
+  <button
+    (click)="sledecaSlika($event)"
+    class="absolute right-4 text-white text-4xl font-bold hover:scale-110 transition"
+    [disabled]="!imaSledecu()"
+  >
+    ›
+  </button>
+</div>
+
+<div class="product-description mt-10 p-4">
+  <h3><i class="fas fa-info-circle"></i> O PROIZVODU</h3>
+  <br>
+  <p>
+    Naše dekorativne maske za klimu predstavljaju savršen spoj <b>funkcionalnosti i estetike.</b> <br>
+    Pored <b>zaštite</b> od spoljašnjih uticaja, maska <b>vizuelno ulepsava</b> vaš prostor – bilo da se postavlja na fasadu ili u enterijer.
+  </p>
+  <p>
+    Izrađene su od <b>plastificiranog lima</b>, što ih čini idealnim za sve vremenske uslove. <br>Zahvaljujući modernom dizajnu, lako se uklapaju u različite stilove objekata, <b>ne ometaju rad uređaja i obezbeđuju estetski izgled</b>.
+  </p>
+
+  <div class="section-divider"></div>
+
+  <h3><i class="fas fa-cogs"></i> TEHNIČKE KARAKTERISTIKE</h3>
+  <br>
+  <ul class="custom-list">
+    <li><strong>Materijal:</strong> Plastificirani lim (otporan na koroziju)</li>
+    <li><strong>Tehnika izrade:</strong> CNC lasersko sečenje visoke preciznosti</li>
+    <li><strong>Dimenzije:</strong> 90cm (š) x 65cm (v) x 44cm (d)</li>
+    <li><strong>Boja:</strong> Opcije po želji</li>
+    <li><strong>Montaža:</strong> Uz 6 šrafova, uputstvo uključeno</li>
+  </ul>
+
+  <div class="section-divider"></div>
+
+  <h3><i class="fas fa-star"></i> PREDNOSTI</h3>
+  <ul class="custom-list">
+    <li><strong>Personalizovani dizajn:</strong> Pošaljite bilo koju šaru – izrađujemo masku baš po vašoj želji!</li>
+    <li><strong>Vrhunski materijal:</strong> CNC sečeni lim debljine 1.5 mm, zaštićen po vašoj želji!</li>
+    <li><strong>Laka montaža:</strong> Rupe su već pripremljene – samo pričvrstite i gotovo.</li>
+    <li><strong>Dimenzije po meri:</strong> Standardne su 90x65x44cm, a za veće količine prilagođavamo po meri vašeg uređaja.</li>
+    <li><strong>Brza isporuka:</strong> Rok isporuke je 5–7 radnih dana!</li>
+  </ul>
+</div>

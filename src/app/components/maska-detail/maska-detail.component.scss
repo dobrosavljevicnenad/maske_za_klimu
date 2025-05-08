@@ -1,0 +1,91 @@
+.product-description {
+  background: #fdfdfd;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  // max-width:
+  margin: 3rem auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  padding: 3rem 2rem;
+  line-height: 1.8;
+  font-size: 1.125rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  border-left: 5px solid #4b9ce2;
+  padding-left: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+h3 i {
+  margin-right: 10px;
+  color: #4b9ce2;
+  font-size: 1.2rem;
+}
+
+h3:hover {
+  color: #4b9ce2;
+  transition: color 0.3s ease;
+}
+
+p, .product-description p {
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  color: #444;
+}
+
+.product-description p.intro {
+  font-size: 1.2rem;
+  color: #555;
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-divider {
+  height: 3px;
+  background: linear-gradient(to right, #4b9ce2, transparent);
+  margin: 3rem 0;
+  border-radius: 50px;
+}
+
+.custom-list {
+  list-style: none;
+  padding: 0;
+}
+
+.custom-list li {
+  padding: 12px 0;
+  position: relative;
+  padding-left: 2em;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.custom-list li::before {
+  content: "✔";
+  color: #4b9ce2;
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-list li:hover {
+  background-color: #f0f8ff;
+  border-left: 4px solid #4b9ce2;
+  padding-left: 2.3em;
+  border-radius: 6px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

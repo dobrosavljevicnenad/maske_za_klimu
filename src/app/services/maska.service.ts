@@ -21,8 +21,8 @@ export class MaskaService {
     { id: 2, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 2', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska2_1.jpg'], popust: 0, boja: 'Crna' },
     { id: 4, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 3', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska1_3.jpg'], popust: 0, boja: 'Crna' },
     { id: 5, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 4', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska20.jpg'], popust: 0, boja: 'Crna' },
-    { id: 6, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 5', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska6.png'], popust: 0, boja: 'Crna' },
-    { id: 9, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 6', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska9.jpg'], popust: 0, boja: 'Crna' }
+    { id: 6, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 5', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/klima_br3.png'], popust: 0, boja: 'Crna' },
+    { id: 9, naziv: 'Zaštitna maska za spoljnu jedinicu - Model 6', opis: 'Stilizovana zaštita za klimu od laserski rezanog lima.', cena: 12490, slika: ['assets/maska_br5.png'], popust: 0, boja: 'Crna' }
   ];
 
   /*** --- WISHLIST METODE --- ***/
