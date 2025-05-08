@@ -1,3 +1,39 @@
-<h1 class="text-center bg-red-500 text-2xl font-bold text-white p-6 shadow-lg">
-  Centrirani tekst sa pozadinom i senkom
-</h1>
+<footer class="bg-gray-100 p-6 shadow-sm" itemscope itemtype="https://schema.org/Organization">
+  <div class="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+
+    <!-- Kontakt -->
+    <address id="kontakt" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" class="not-italic">
+      <h3 class="text-lg font-semibold font-serif italic mb-2">Kontakt</h3>
+      <p><span itemprop="telephone">+381 65 9775995</span></p>
+      <p><a href="mailto:n.dobrosavljevic01@gmail.com" itemprop="email">n.dobrosavljevic01&#64;gmail.com</a></p>
+      <p><span itemprop="addressLocality">Smederevo</span>, <span itemprop="addressCountry">Srbija</span></p>
+    </address>
+
+    <!-- Informacije -->
+    <nav aria-label="Informacije">
+      <h3 class="text-lg font-semibold font-serif italic mb-2">Informacije</h3>
+      <ul class="space-y-1">
+        <li><a href="/o-nama" class="hover:underline">O nama</a></li>
+        <li><a href="/uslovi-koriscenja" class="hover:underline">Uslovi korišćenja</a></li>
+        <li><a href="/dostava-i-povracaj" class="hover:underline">Dostava i povraćaj</a></li>
+      </ul>
+    </nav>
+
+    <!-- Društvene mreže -->
+    <div>
+      <h3 class="text-lg font-semibold font-serif italic mb-2">Pratite nas</h3>
+      <ul>
+        <li>
+          <a href="https://instagram.com/maske_za_klimu" target="_blank" rel="noopener noreferrer">
+            Instagram: &#64;maske_za_klimu
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="text-center text-gray-400 text-xs mt-6">
+    &copy; {{ currentYear }} MaskeKlime.rs – Sva prava zadržana.
+  </div>
+</footer>

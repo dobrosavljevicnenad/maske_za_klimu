@@ -1,1 +1,80 @@
-<p>header works!</p>
+<header class="bg-gray-100 p-3 shadow-sm">
+  <div class="container mx-auto flex flex-wrap justify-between items-center gap-4">
+
+    <!-- Logo -->
+    <div routerLink="/" class="flex items-center max-h-[60px] cursor-pointer">
+      <img src="assets/logo.png"
+           alt="Logo"
+           class="max-h-[80px] w-auto transform scale-110 object-contain" />
+      <div class="ml-3 text-center leading-tight">
+        <span class="text-base sm:text-lg font-serif italic text-gray-700">DEKORATIVNE MASKE</span>
+        <span class="block text-base sm:text-lg font-serif italic text-gray-700">ZA KLIMU</span>
+      </div>
+    </div>
+
+    <!-- Ikone sa desne strane -->
+    <div class="flex gap-4 sm:gap-6 items-center">
+
+      <!-- Search bar -->
+      <div class="relative">
+        <!-- <input
+          type="text"
+          placeholder="Search products..."
+          class="p-2 pl-10 rounded-full text-gray-700 w-48 sm:w-72 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all"
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()" /> -->
+          <input
+          type="text"
+          placeholder="Search products..."
+          class="p-2 pl-10 rounded-full text-gray-700 w-48 sm:w-72 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all"
+          (input)="onSearchChange()" />
+        <!-- <mat-icon class="absolute left-2 top-2.5 text-gray-600">search</mat-icon> -->
+      </div>
+
+      <!-- Wishlist -->
+      <div class="relative cursor-pointer">
+        <a routerLink="/wishlist">
+          <!-- <mat-icon class="text-gray-600 hover:scale-125 transition-transform">favorite</mat-icon> -->
+        </a>
+        <ng-container *ngIf="wishlistCount$ | async as wishlistCount">
+          <span *ngIf="wishlistCount > 0" class="absolute top-1 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+        </ng-container>
+      </div>
+
+      <!-- Cart -->
+      <div class="relative cursor-pointer" routerLink="/cart">
+        <!-- <mat-icon class="text-gray-600 hover:scale-125 transition-transform">shopping_cart</mat-icon> -->
+        <span *ngIf="cartProducts.length !== 0"
+              class="absolute top-1 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+      </div>
+
+      <!-- Info dugme -->
+      <div class="relative cursor-pointer" (click)="openModal()">
+        <!-- <mat-icon class="text-gray-600 hover:scale-125 transition-transform">info</mat-icon> -->
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MODAL (Info o maskama) -->
+<div *ngIf="isModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white rounded-2xl p-6 w-[90%] max-w-2xl shadow-lg">
+    <h2 class="text-2xl font-semibold font-serif italic mb-4 text-center">Informacije</h2>
+
+    <div class="text-lg font-serif italic space-y-4 text-gray-700">
+      <p><strong>Standardne dimenzije:</strong> 90x65x44cm.</p>
+      <p><strong>Raznovrsni dizajn:</strong> Pošaljite bilo koju šaru sa interneta i izradićemo je brzo.</p>
+      <p><strong>Kvalitetna izrada:</strong> CNC sečeni lim (1.5 mm), otporan na vremenske uslove.</p>
+      <p><strong>Raznovrsne boje:</strong> Beli, crni, antracit ili po porudžbini.</p>
+      <p><strong>Jednostavna montaža:</strong> Rupice u uglovima za brzo fiksiranje.</p>
+      <p><strong>Dizajn + funkcija:</strong> Zaštita + estetika za eksterijer i enterijer.</p>
+      <p class="text-center"><strong>Kontaktirajte nas i kreirajmo zajedno masku po vašoj meri!</strong></p>
+    </div>
+
+    <div class="mt-6 text-center">
+      <button (click)="closeModal()" class="bg-red-500 text-white py-2 px-6 rounded-full hover:bg-red-600 transition-all">
+        Zatvori
+      </button>
+    </div>
+  </div>
+</div>
