@@ -1,0 +1,41 @@
+<div class="modal-container">
+  <div class="modal-content">
+    <!-- Ikona u krugu -->
+    <div class="modal-icon">
+      <mat-icon>shopping_cart</mat-icon>
+    </div>
+
+    <!-- Naslov -->
+    <h2 class="modal-title">
+      {{ data.title }}
+    </h2>
+
+    <!-- Poruka -->
+    <p class="modal-message">
+      {{ data.message }}
+    </p>
+
+    <!-- Dugmadi -->
+    <div class="modal-actions">
+      <!-- Dugme: Nastavi kupovinu -->
+      <button
+        mat-flat-button
+        color="warn"
+        (click)="onCancel()"
+        class="action-button border "
+      >
+        Nastavi kupovinu
+      </button>
+
+      <!-- Dugme: Idi u korpu -->
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onConfirm()"
+        class="action-button bg-blue-500 text-white"
+      >
+        Idi u korpu
+      </button>
+    </div>
+  </div>
+</div>

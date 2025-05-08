@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

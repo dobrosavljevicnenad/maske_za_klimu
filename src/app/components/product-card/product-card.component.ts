@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MaskaService } from '../../services/maska.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-// import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-product-card',
@@ -41,20 +41,20 @@ export class ProductCardComponent implements OnInit {
       this.maskaService.addToCart(this.product.id, this.product.boja, 1);
       this.isCarted = true;
 
-      // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      //   data: {
-      //     title: 'Proizvod dodat u korpu!',
-      //     message: 'Želite li da pregledate korpu ili da nastavite sa kupovinom?',
-      //   },
-      //   width: '400px',
-      //   panelClass: 'blur-dialog-backdrop'
-      // });
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        data: {
+          title: 'Proizvod dodat u korpu!',
+          message: 'Želite li da pregledate korpu ili da nastavite sa kupovinom?',
+        },
+        width: '400px',
+        panelClass: 'blur-dialog-backdrop'
+      });
 
-      // dialogRef.afterClosed().subscribe((result) => {
-      //   if (result === 'cart') {
-      //     this.router.navigate(['/cart']);
-      //   }
-      // });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result === 'cart') {
+          this.router.navigate(['/cart']);
+        }
+      });
     }
   }
 
