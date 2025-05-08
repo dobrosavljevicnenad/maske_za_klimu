@@ -28,13 +28,13 @@
           placeholder="Search products..."
           class="p-2 pl-10 rounded-full text-gray-700 w-48 sm:w-72 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all"
           (input)="onSearchChange()" />
-        <!-- <mat-icon class="absolute left-2 top-2.5 text-gray-600">search</mat-icon> -->
+        <mat-icon class="absolute left-2 top-2.5 text-gray-600">search</mat-icon>
       </div>
 
       <!-- Wishlist -->
       <div class="relative cursor-pointer">
         <a routerLink="/wishlist">
-          <!-- <mat-icon class="text-gray-600 hover:scale-125 transition-transform">favorite</mat-icon> -->
+          <mat-icon class="text-gray-600 hover:scale-125 transition-transform">favorite</mat-icon>
         </a>
         <ng-container *ngIf="wishlistCount$ | async as wishlistCount">
           <span *ngIf="wishlistCount > 0" class="absolute top-1 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -43,14 +43,14 @@
 
       <!-- Cart -->
       <div class="relative cursor-pointer" routerLink="/cart">
-        <!-- <mat-icon class="text-gray-600 hover:scale-125 transition-transform">shopping_cart</mat-icon> -->
+        <mat-icon class="text-gray-600 hover:scale-125 transition-transform">shopping_cart</mat-icon>
         <span *ngIf="cartProducts.length !== 0"
               class="absolute top-1 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
       </div>
 
       <!-- Info dugme -->
       <div class="relative cursor-pointer" (click)="openModal()">
-        <!-- <mat-icon class="text-gray-600 hover:scale-125 transition-transform">info</mat-icon> -->
+        <mat-icon class="text-gray-600 hover:scale-125 transition-transform">info</mat-icon>
       </div>
     </div>
   </div>
