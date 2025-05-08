@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaskaDetailComponent } from './components/maska-detail/maska-detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'maska/:id', component: MaskaDetailComponent},
   { path: 'cart', component: CartComponent},
   { path: 'order', component: OrderComponent},
+  { path: 'wishlist', component: WishlistComponent},
   { path: '**', redirectTo: ''}
 ];
 
