@@ -3,7 +3,7 @@ import { MaskaService } from '../../services/maska.service';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   editingColorIndex: number | null = null;
   newColorValue: string = '';
 
-  constructor(private maskaService: MaskaService) {}
+  constructor(private maskaService: MaskaService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -78,5 +78,11 @@ export class CartComponent implements OnInit {
     this.newColorValue = '';
     this.loadCart();
   }
+
+  navigateToOrder(): void {
+  if (this.cartProducts.length > 0) {
+    this.router.navigate(['/order']);
+  }
+}
 
 }

@@ -16,6 +16,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { MaskaDetailComponent } from './components/maska-detail/maska-detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CommonModule } from '@angular/common';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
     ProductCardComponent,
     ConfirmationDialogComponent,
     MaskaDetailComponent,
-    CartComponent
+    CartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

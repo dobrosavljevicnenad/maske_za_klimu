@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MaskaService } from '../../services/maska.service';
-// import { ToastrService } from 'ngx-toastr';
+import { isPlatformBrowser} from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';  // Ovo koristi @angular/core za PLATFORM_ID
+
 
 @Component({
   selector: 'app-maska-detail',
@@ -12,7 +12,7 @@ import { MaskaService } from '../../services/maska.service';
 })
 export class MaskaDetailComponent implements OnInit {
   maska: any;
-  maske:any[] = [];
+  maske: any[] = [];
   izabranaSlika: string = '';
   uvelicano: boolean = false;
   kolicina: number = 1;
@@ -22,18 +22,19 @@ export class MaskaDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private maskaService: MaskaService,
-    // private toastr: ToastrService
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.maska = this.maskaService.maske.find(m => m.id === id);
 
     if (this.maska && this.maska.slika.length > 0) {
       this.izabranaSlika = this.maska.slika[0];
     }
-
   }
 
   promeniSliku(slika: string) {
@@ -64,6 +65,14 @@ export class MaskaDetailComponent implements OnInit {
     }
   }
 
+  imaSledeci(): boolean {
+    return this.maska.slika.indexOf(this.izabranaSlika) < this.maska.slika.length - 1;
+  }
+
+  imaPrethodni(): boolean {
+    return this.maska.slika.indexOf(this.izabranaSlika) > 0;
+  }
+
   imaSledecu(): boolean {
     return this.maska.slika.indexOf(this.izabranaSlika) < this.maska.slika.length - 1;
   }
@@ -71,6 +80,7 @@ export class MaskaDetailComponent implements OnInit {
   imaPrethodnu(): boolean {
     return this.maska.slika.indexOf(this.izabranaSlika) > 0;
   }
+
 
   sledeciProizvod() {
     const trenutniIndex = this.maskaService.maske.findIndex(m => m.id === this.maska.id);
@@ -86,16 +96,6 @@ export class MaskaDetailComponent implements OnInit {
       this.maska = this.maskaService.maske[trenutniIndex - 1];
       this.izabranaSlika = this.maska.slika[0]; // Resetuj prvu sliku za novi proizvod
     }
-  }
-
-  imaSledeci(): boolean {
-    const trenutniIndex = this.maskaService.maske.findIndex(m => m.id === this.maska.id);
-    return trenutniIndex < this.maskaService.maske.length - 1;
-  }
-
-  imaPrethodni(): boolean {
-    const trenutniIndex = this.maskaService.maske.findIndex(m => m.id === this.maska.id);
-    return trenutniIndex > 0;
   }
 
   // Funkcija za povećanje količine
@@ -136,10 +136,5 @@ export class MaskaDetailComponent implements OnInit {
     });
     // Ovde možeš dodati logiku za dodavanje proizvoda u korpu
     console.log(`Proizvod "${this.maska.naziv}" sa količinom ${this.kolicina} dodat u korpu.`);
-    // Na primer, pozovi servis koji čuva proizvode u korpi
-
-    // this.toastr.success(`Proizvod "${this.maska.naziv}" je dodat u korpu.`, 'Uspešno');
   }
-
-
 }
