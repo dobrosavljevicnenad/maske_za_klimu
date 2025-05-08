@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -25,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     RouterModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
 
   providers: [],
