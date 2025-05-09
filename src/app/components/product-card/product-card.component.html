@@ -1,13 +1,17 @@
-<div class="group bg-white rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-full max-w-sm mx-auto">
+<div class="group bg-white rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-full max-w-sm mx-auto" itemscope itemtype="https://schema.org/Product">
 
   <!-- Slika sa badge-evima -->
-  <a [routerLink]="['/maska', product.id]" class="block overflow-hidden relative rounded-t-2xl">
-    <img [src]="product.slika[0]" alt="{{ product.naziv }}"
+  <a [routerLink]="['/maska', product.id]"
+     class="block overflow-hidden relative rounded-t-2xl"
+     [title]="'Pogledaj detalje za ' + product.naziv">
+    <img [src]="product.slika[0]"
+         alt="Maska za klimu {{ product.naziv }} - slika proizvoda"
+         itemprop="image"
          class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
 
     <!-- Badge-evi -->
     <div class="absolute top-3 left-3 space-y-2">
-      <span *ngIf="product.novo" class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+      <span *ngIf="product.novo" class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow" itemprop="keywords">
         NOVO
       </span>
       <span *ngIf="product.popust > 0" class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
@@ -18,23 +22,25 @@
 
   <!-- Informacije o proizvodu -->
   <div class="p-5 space-y-3">
-    <h3 class="!text-lg !sm:text-xl !font-semibold !text-gray-800 !font-serif !italic !line-clamp-1">
+    <h3 class="!text-lg !sm:text-xl !font-semibold !text-gray-800 !font-serif !italic !line-clamp-1" itemprop="name">
       {{ product.naziv }}
     </h3>
 
-    <p class="text-gray-500 text-sm italic line-clamp-2">
+    <p class="text-gray-500 text-sm italic line-clamp-2" itemprop="description">
       {{ product.opis }}
     </p>
 
     <!-- Cena -->
-    <div class="flex items-center justify-between mt-4">
+    <div class="flex items-center justify-between mt-4" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
       <div>
         <p *ngIf="product.popust > 0" class="text-sm text-gray-400 line-through">
-          {{ product.cena | number:'1.0-0' }} RSD
+          <span itemprop="priceCurrency" content="RSD">RSD</span>
+          <span itemprop="price">{{ product.cena | number:'1.0-0' }}</span>
         </p>
         <p class="text-lg sm:text-xl font-semibold text-gray-700">
           {{ getDiscountPrice(product) }} RSD
         </p>
+        <meta itemprop="availability" content="https://schema.org/InStock" />
       </div>
 
       <!-- Akcione ikone -->
@@ -42,6 +48,8 @@
         <!-- Wishlist -->
         <button (click)="toggleWishlist()"
                 class="transition-colors duration-200"
+                [title]="isWishlisted ? 'Ukloni iz liste želja' : 'Dodaj u listu želja'"
+                role="button"
                 [ngClass]="{
                   'text-red-600': isWishlisted,
                   'text-gray-400 hover:text-red-500': !isWishlisted
@@ -52,6 +60,9 @@
         <!-- Dodaj u korpu -->
         <button (click)="toggleCart()"
                 class="transition-colors duration-200"
+                title="Dodaj proizvod {{ product.naziv }} u korpu"
+                aria-label="Dodaj u korpu"
+                role="button"
                 [ngClass]="{
                   'text-blue-600': isCarted,
                   'text-gray-400 hover:text-blue-500': !isCarted

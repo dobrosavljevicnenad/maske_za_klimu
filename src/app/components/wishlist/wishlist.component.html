@@ -1,30 +1,50 @@
 <div class="container mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold text-gray-900 mb-6">Omiljeni proizvodi</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-6" itemprop="headline">Omiljeni proizvodi</h2>
 
-  <div *ngIf="wishlistProducts.length === 0" class="text-gray-500 text-lg text-center">
+  <div *ngIf="wishlistProducts.length === 0" class="text-gray-500 text-lg text-center" aria-live="polite">
     Nema proizvoda u listi želja.
   </div>
 
   <div *ngIf="wishlistProducts.length > 0"
-       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-    <div *ngFor="let product of wishlistProducts"
-         class="group relative bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition duration-300 p-4 overflow-hidden">
+       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+       itemscope itemtype="https://schema.org/ItemList">
 
-      <a [routerLink]="['/maska', product.id]" class="block overflow-hidden relative rounded-t-2xl">
+    <meta itemprop="name" content="Omiljeni proizvodi" />
+    <meta itemprop="itemListOrder" content="http://schema.org/ItemListUnordered" />
+
+    <div *ngFor="let product of wishlistProducts; let i = index"
+         class="group relative bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition duration-300 p-4 overflow-hidden"
+         itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
+
+      <a [routerLink]="['/maska', product.id]"
+         class="block overflow-hidden relative rounded-t-2xl"
+         [title]="'Detalji proizvoda ' + product.naziv">
+
         <div class="relative w-full h-56 rounded-xl overflow-hidden">
           <img [src]="product.slika[0]"
-              alt="Product Image"
-              class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105" />
+               [alt]="'Maska za klimu ' + product.naziv + ' - slika proizvoda'"
+               class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+               itemprop="image" />
         </div>
       </a>
 
       <div class="mt-4 space-y-1">
-        <h3 class="!text-lg !font-semibold !text-gray-800">{{ product.naziv }}</h3>
-        <p class="!text-gray-500 font-bold">{{ product.cena }} RSD</p>
+        <h3 class="!text-lg !font-semibold !text-gray-800" itemprop="name">
+          {{ product.naziv }}
+        </h3>
+        <p class="!text-gray-500 font-bold">
+          <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <span itemprop="priceCurrency" content="RSD">RSD</span>
+            <span itemprop="price">{{ product.cena }}</span>
+            <meta itemprop="availability" content="https://schema.org/InStock" />
+          </span>
+        </p>
       </div>
 
       <button (click)="removeFromWishlist(product.id)"
-              class="absolute top-3 right-3 bg-white text-red-500 hover:bg-red-100 hover:text-red-700 rounded-full p-2 shadow transition">
+              class="absolute top-3 right-3 bg-white text-red-500 hover:bg-red-100 hover:text-red-700 rounded-full p-2 shadow transition"
+              title="Ukloni {{ product.naziv }} iz liste želja"
+              role="button">
         <mat-icon>delete</mat-icon>
       </button>
 
