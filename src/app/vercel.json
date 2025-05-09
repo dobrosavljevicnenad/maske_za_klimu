@@ -2,19 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist/maske_za_klimu/browser" }
+      "src": "api/index.js",
+      "use": "@vercel/node"
     },
     {
-      "src": "dist/maske_za_klimu/server/main.js",
-      "use": "@vercel/node"
+      "src": "dist/maske_za_klimu/browser/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/maske_za_klimu/server/main.js"
+      "dest": "api/index.js"
     }
   ]
 }

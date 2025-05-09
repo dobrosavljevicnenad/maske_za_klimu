@@ -4,12 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run build:ssr",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run maske_za_klimu:serve-ssr",
     "serve:ssr": "node dist/maske_za_klimu/server/main.js",
-    "build:ssr": "ng build && ng run maske_za_klimu:server",
+    "build:ssr": "ng build --configuration production && ng run maske_za_klimu:server",
     "prerender": "ng run maske_za_klimu:prerender",
     "vercel-build": "npm run build:ssr"
   },
