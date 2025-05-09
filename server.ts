@@ -58,3 +58,5 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
 }
 
 export * from './src/main.server';
+const serverApp = app();
+export default serverApp;
