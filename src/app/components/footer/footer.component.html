@@ -13,9 +13,9 @@
     <nav aria-label="Informacije">
       <h3 class="text-lg font-semibold font-serif italic mb-2">Informacije</h3>
       <ul class="space-y-1">
-        <li><a href="/o-nama" class="hover:underline">O nama</a></li>
-        <li><a href="/uslovi-koriscenja" class="hover:underline">Uslovi korišćenja</a></li>
-        <li><a href="/dostava-i-povracaj" class="hover:underline">Dostava i povraćaj</a></li>
+        <li><a href="/o-nama" class="hover:underline" itemprop="url">O nama</a></li>
+        <li><a href="/uslovi-koriscenja" class="hover:underline" itemprop="url">Uslovi korišćenja</a></li>
+        <li><a href="/dostava-i-povracaj" class="hover:underline" itemprop="url">Dostava i povraćaj</a></li>
       </ul>
     </nav>
 
@@ -24,7 +24,7 @@
       <h3 class="text-lg font-semibold font-serif italic mb-2">Pratite nas</h3>
       <ul>
         <li>
-          <a href="https://instagram.com/maske_za_klimu" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com/maske_za_klimu" target="_blank" rel="noopener noreferrer" itemprop="sameAs">
             Instagram: &#64;maske_za_klimu
           </a>
         </li>
@@ -33,7 +33,10 @@
 
   </div>
 
-  <div class="text-center text-gray-400 text-xs mt-6">
+  <div class="text-center text-gray-400 text-xs mt-6" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="MaskeKlime.rs">
+    <meta itemprop="url" content="https://www.klimamaske.online">
+    <meta itemprop="logo" content="assets/logo.png">
     &copy; {{ currentYear }} MaskeKlime.rs – Sva prava zadržana.
   </div>
 </footer>

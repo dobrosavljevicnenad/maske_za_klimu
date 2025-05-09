@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MaskaService } from '../../services/maska.service';
 import { ToastrService } from 'ngx-toastr';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-maska-detail',
@@ -22,11 +23,15 @@ export class MaskaDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private maskaService: MaskaService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private title: Title, private meta: Meta
   ) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+       this.title.setTitle('Maske za klimu - Dekorativne, kvalitetne i povoljne maske za klimu');
+    this.meta.updateTag({ name: 'description', content: 'Kupite moderne maske za klimu. Ulepsajte svoj prostor elegantnim dekorativnim resenjima za spoljasnje jedinice klima uredjaja.' });
+    this.meta.updateTag({ name: 'keywords', content: 'maske za klimu, dekorativne maske za klimu, maske za spoljasnju jedinicu klime, klima maske, maske klima' });
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.maska = this.maskaService.maske.find(m => m.id === id);
 
