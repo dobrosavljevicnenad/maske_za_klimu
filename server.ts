@@ -1,4 +1,5 @@
 import 'zone.js/dist/zone-node';
+import 'zone.js/node'; // required for SSR
 
 import {APP_BASE_HREF} from '@angular/common';
 import {ngExpressEngine} from '@nguniversal/express-engine';
