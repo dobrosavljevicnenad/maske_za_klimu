@@ -10,8 +10,7 @@
     "dev:ssr": "ng run maske_za_klimu:serve-ssr",
     "build:ssr": "ng build && ng run maske_za_klimu:server",
     "serve:ssr": "node dist/maske_za_klimu/server/main.js",
-    "prerender": "ng run maske_za_klimu:prerender",
-    "vercel-build": "npm run build:ssr"
+    "prerender": "ng run maske_za_klimu:prerender"
   },
   "private": true,
   "dependencies": {
