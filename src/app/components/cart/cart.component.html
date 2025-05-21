@@ -1,98 +1,69 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MaskeZaKlimu</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="!container !mx-auto !px-4 !py-8">
+  <h2 class="!text-3xl !font-bold !text-gray-900 mb-6">Korpa</h2>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/logo.png">
-
-  <!-- Open Graph meta tags for social media sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Maske za klimu - Zaštita za vaš klima uređaj">
-  <meta property="og:description" content="Pogledajte našu ponudu zaštitnih maski za klima uređaje i osigurajte dugotrajan rad vašeg uređaja.">
-  <meta property="og:image" content="assets/klima_br1.png"> <!-- Slika koju ste pomenuli -->
-  <meta property="og:url" content="https://www.klimamaske.online">
-
-  <!-- Twitter card meta tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Maske za klimu - Zaštita za vaš klima uređaj">
-  <meta name="twitter:description" content="Pogledajte našu ponudu zaštitnih maski za klima uređaje i osigurajte dugotrajan rad vašeg uređaja.">
-  <meta name="twitter:image" content="assets/klima_br1.png"> <!-- Slika koju ste pomenuli -->
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body class="mat-typography">
-  <div class="!container !mx-auto !px-4 !py-8">
-    <h2 class="!text-3xl !font-bold !text-gray-900 mb-6">Korpa</h2>
-
-    <div *ngIf="cartProducts.length === 0" class="text-gray-500 text-lg text-center">
-      Nema proizvoda u korpi.
-    </div>
-
-    <div *ngIf="cartProducts.length > 0" class="!space-y-1">
-      <div *ngFor="let product of cartProducts; let i = index" class="!flex !items-center !bg-white p-4 !shadow-md !rounded-lg">
-        <img class="!w-24 !h-24 !object-cover !rounded-md" [src]="product.slika[0]" alt="Product Image">
-        <div class="!ml-4 !flex-1 space-y-1">
-          <h3 class="!text-lg !font-semibold !mb-1">{{ product.naziv }}</h3>
-          <p class="!text-gray-500">{{ getDiscountPrice(product)*product.kolicina }} RSD</p>
-          <p class="!text-gray-500">
-            Boja: <span class="!font-semibold">{{ product.boja }}</span>
-          </p>
-
-          <!-- Dugme za prikaz inputa -->
-          <button (click)="editingColorIndex === i ? editingColorIndex = null : startEditingColor(i, product.boja)"
-          class="!mt-1 !text-sm !text-blue-600 !hover:underline">
-            Izmeni boju
-          </button>
-
-          <!-- Input za unos nove boje -->
-          <div *ngIf="editingColorIndex === i" class="mt-2 flex items-center gap-2">
-            <input type="text"
-                  [(ngModel)]="newColorValue"
-                  class="border border-gray-300 px-2 py-1 rounded text-sm"
-                  placeholder="Unesite novu boju (npr. crna, #000)" />
-
-            <button (click)="changeColor(i, newColorValue)"
-                    class="bg-green-500 hover:bg-green-600 text-white text-sm px-3 py-1 rounded">
-              Sačuvaj
-            </button>
-          </div>
-
-          <div class="flex items-center mt-2">
-            <button (click)="removeFromCart(product.id, product.boja)" class="bg-gray-300 px-2 py-1 rounded-md">-</button>
-            <input type="number" [(ngModel)]="product.kolicina" (change)="updateCart(product.id, product.kolicina, product.boja)"
-              class="w-12 text-center mx-2 border rounded-md" />
-            <button (click)="addToCart(product.id, product.boja)" class="bg-gray-300 px-2 py-1 rounded-md">+</button>
-          </div>
-        </div>
-        <button (click)="deleteFromCart(product.id, product.boja)" class="text-red-500 hover:text-red-700 ml-4">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </div>
-
-    <div class="mt-6 text-xl font-bold">
-      Ukupno: {{ getTotalPrice() }} RSD
-    </div>
-
-    <button [disabled]="cartProducts.length === 0"
-            [ngClass]="{
-              'bg-gray-400': cartProducts.length === 0,
-              'text-gray-600': cartProducts.length === 0,
-              'cursor-not-allowed': cartProducts.length === 0,
-              'bg-green-600': cartProducts.length > 0,
-              'hover:bg-green-700': cartProducts.length > 0
-            }"
-            routerLink="/order"
-            class="mt-4 text-white px-6 py-2 rounded-md text-lg transition">
-      Naruči
-    </button>
+  <div *ngIf="cartProducts.length === 0" class="text-gray-500 text-lg text-center">
+    Nema proizvoda u korpi.
   </div>
-</body>
-</html>
+
+  <div *ngIf="cartProducts.length > 0" class="!space-y-1">
+    <div *ngFor="let product of cartProducts; let i = index" class="!flex !items-center !bg-white p-4 !shadow-md !rounded-lg">
+      <img class="!w-24 !h-24 !object-cover !rounded-md" [src]="product.slika[0]" alt="Product Image">
+      <div class="!ml-4 !flex-1 space-y-1">
+        <h3 class="!text-lg !font-semibold !mb-1">{{ product.naziv }}</h3>
+        <p class="!text-gray-500">{{ getDiscountPrice(product)*product.kolicina }} RSD</p>
+        <p class="!text-gray-500">
+          Boja: <span class="!font-semibold">{{ product.boja }}</span>
+        </p>
+
+        <!-- Dugme za prikaz inputa -->
+        <button (click)="editingColorIndex === i ? editingColorIndex = null : startEditingColor(i, product.boja)"
+        class="!mt-1 !text-sm !text-blue-600 !hover:underline">
+          Izmeni boju
+        </button>
+
+
+        <!-- Input za unos nove boje -->
+        <div *ngIf="editingColorIndex === i" class="mt-2 flex items-center gap-2">
+          <input type="text"
+                [(ngModel)]="newColorValue"
+                class="border border-gray-300 px-2 py-1 rounded text-sm"
+                placeholder="Unesite novu boju (npr. crna, #000)" />
+
+          <button (click)="changeColor(i, newColorValue)"
+                  class="bg-green-500 hover:bg-green-600 text-white text-sm px-3 py-1 rounded">
+            Sačuvaj
+          </button>
+        </div>
+
+        <div class="flex items-center mt-2">
+          <button (click)="removeFromCart(product.id, product.boja)" class="bg-gray-300 px-2 py-1 rounded-md">-</button>
+          <input type="number" [(ngModel)]="product.kolicina" (change)="updateCart(product.id, product.kolicina, product.boja)"
+            class="w-12 text-center mx-2 border rounded-md" />
+          <button (click)="addToCart(product.id, product.boja)" class="bg-gray-300 px-2 py-1 rounded-md">+</button>
+        </div>
+      </div>
+      <button (click)="deleteFromCart(product.id, product.boja)" class="text-red-500 hover:text-red-700 ml-4">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-6 text-xl font-bold">
+    Ukupno: {{ getTotalPrice() }} RSD
+  </div>
+
+ <button [disabled]="cartProducts.length === 0"
+        [ngClass]="{
+          'bg-gray-400': cartProducts.length === 0,
+          'text-gray-600': cartProducts.length === 0,
+          'cursor-not-allowed': cartProducts.length === 0,
+          'bg-green-600': cartProducts.length > 0,
+          'hover:bg-green-700': cartProducts.length > 0
+        }"
+        routerLink="/order"
+        class="mt-4 text-white px-6 py-2 rounded-md text-lg transition">
+  Naruči
+</button>
+
+
+</div>

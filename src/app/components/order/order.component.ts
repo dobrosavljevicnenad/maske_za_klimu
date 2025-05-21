@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MaskaService } from '../../services/maska.service';
 import { Router } from '@angular/router';
 import emailjs from '@emailjs/browser';
-import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-order',
@@ -19,12 +18,9 @@ export class OrderComponent implements OnInit {
     address: ''
   };
 
-  constructor(private maskaService: MaskaService, private router: Router,private title: Title, private meta: Meta) {}
+  constructor(private maskaService: MaskaService, private router: Router) {}
 
   ngOnInit(): void {
-       this.title.setTitle('Maske za klimu - Dekorativne, kvalitetne i povoljne maske za klimu');
-    this.meta.updateTag({ name: 'description', content: 'Kupite moderne maske za klimu. Ulepsajte svoj prostor elegantnim dekorativnim resenjima za spoljasnje jedinice klima uredjaja.' });
-    this.meta.updateTag({ name: 'keywords', content: 'maske za klimu, dekorativne maske za klimu, maske za spoljasnju jedinicu klime, klima maske, maske klima' });
     this.loadCart();
   }
 

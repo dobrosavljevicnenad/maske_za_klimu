@@ -1,74 +1,41 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MaskeZaKlimu</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="modal-container">
+  <div class="modal-content">
+    <!-- Ikona u krugu -->
+    <div class="modal-icon">
+      <mat-icon>shopping_cart</mat-icon>
+    </div>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/logo.png">
+    <!-- Naslov -->
+    <h2 class="modal-title">
+      {{ data.title }}
+    </h2>
 
-  <!-- Open Graph meta tags for social media sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Maske za klimu - Zaštita za vaš klima uređaj">
-  <meta property="og:description" content="Pogledajte našu ponudu zaštitnih maski za klima uređaje i osigurajte dugotrajan rad vašeg uređaja.">
-  <meta property="og:image" content="assets/klima_br1.png"> <!-- Slika koju ste pomenuli -->
-  <meta property="og:url" content="https://www.klimamaske.online">
+    <!-- Poruka -->
+    <p class="modal-message">
+      {{ data.message }}
+    </p>
 
-  <!-- Twitter card meta tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Maske za klimu - Zaštita za vaš klima uređaj">
-  <meta name="twitter:description" content="Pogledajte našu ponudu zaštitnih maski za klima uređaje i osigurajte dugotrajan rad vašeg uređaja.">
-  <meta name="twitter:image" content="assets/klima_br1.png"> <!-- Slika koju ste pomenuli -->
+    <!-- Dugmadi -->
+    <div class="modal-actions">
+      <!-- Dugme: Nastavi kupovinu -->
+      <button
+        mat-flat-button
+        color="warn"
+        (click)="onCancel()"
+        class="action-button border "
+      >
+        Nastavi kupovinu
+      </button>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-
-<body class="mat-typography">
-  <div class="modal-container">
-    <div class="modal-content">
-      <!-- Ikona u krugu -->
-      <div class="modal-icon">
-        <mat-icon>shopping_cart</mat-icon>
-      </div>
-
-      <!-- Naslov -->
-      <h2 class="modal-title">
-        {{ data.title }}
-      </h2>
-
-      <!-- Poruka -->
-      <p class="modal-message">
-        {{ data.message }}
-      </p>
-
-      <!-- Dugmadi -->
-      <div class="modal-actions">
-        <!-- Dugme: Nastavi kupovinu -->
-        <button
-          mat-flat-button
-          color="warn"
-          (click)="onCancel()"
-          class="action-button border "
-        >
-          Nastavi kupovinu
-        </button>
-
-        <!-- Dugme: Idi u korpu -->
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="onConfirm()"
-          class="action-button bg-blue-500 text-white"
-        >
-          Idi u korpu
-        </button>
-      </div>
+      <!-- Dugme: Idi u korpu -->
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onConfirm()"
+        class="action-button bg-blue-500 text-white"
+      >
+        Idi u korpu
+      </button>
     </div>
   </div>
-</body>
-</html>
+</div>

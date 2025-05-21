@@ -1,4 +1,4 @@
-<header class="bg-gray-100 p-3 shadow-sm" itemscope itemtype="https://schema.org/Organization">
+<header class="bg-gray-100 p-3 shadow-sm">
   <div class="container mx-auto flex flex-wrap justify-between items-center gap-4">
 
     <!-- Logo -->
@@ -7,8 +7,8 @@
            alt="Logo"
            class="max-h-[80px] w-auto transform scale-110 object-contain" />
       <div class="ml-3 text-center leading-tight">
-        <span class="!text-base !sm:text-lg !font-serif !italic !text-gray-700" itemprop="name">DEKORATIVNE MASKE</span>
-        <span class="!block !text-base !sm:text-lg !font-serif !italic !text-gray-700" itemprop="name">ZA KLIMU</span>
+        <span class="!text-base !sm:text-lg !font-serif !italic !text-gray-700">DEKORATIVNE MASKE</span>
+        <span class="!block !text-base !sm:text-lg !font-serif !italic !text-gray-700">ZA KLIMU</span>
       </div>
     </div>
 
@@ -17,7 +17,13 @@
 
       <!-- Search bar -->
       <div class="relative">
-        <input
+        <!-- <input
+          type="text"
+          placeholder="Search products..."
+          class="p-2 pl-10 rounded-full text-gray-700 w-48 sm:w-72 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all"
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()" /> -->
+          <input
           type="text"
           placeholder="Search products..."
           class="p-2 pl-10 rounded-full text-gray-700 w-48 sm:w-72 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all"
@@ -72,20 +78,3 @@
     </div>
   </div>
 </div>
-
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="assets/logo.png">
-
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Maske za Klimu - Kvalitetne i personalizovane maske za vaš prostor">
-<meta property="og:description" content="Nudimo širok asortiman dekorativnih maski za klima uređaje. Izaberite dizajn i boju po vašoj meri. Kvalitetna izrada, jednostavna montaža i dugotrajnost.">
-<meta property="og:image" content="assets/klima_br1.png">
-<meta property="og:url" content="https://www.klimamaske.online">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MaskeKlime.rs">
-
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:title" content="Maske za Klimu - Kvalitetne i personalizovane maske za vaš prostor">
-<meta name="twitter:description" content="Nudimo širok asortiman dekorativnih maski za klima uređaje. Izaberite dizajn i boju po vašoj meri. Kvalitetna izrada, jednostavna montaža i dugotrajnost.">
-<meta name="twitter:image" content="assets/klima_br1.png">
-<meta name="twitter:card" content="summary_large_image">
