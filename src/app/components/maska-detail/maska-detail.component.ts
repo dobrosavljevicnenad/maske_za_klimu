@@ -5,8 +5,6 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MaskaService } from '../../services/maska.service';
 import { ToastrService } from 'ngx-toastr';
 import { Title, Meta } from '@angular/platform-browser';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-maska-detail',
@@ -21,15 +19,12 @@ export class MaskaDetailComponent implements OnInit {
   kolicina: number = 1;
   izabranaBoja: string = '';
   drugaBoja: string = '';
-  schemaData: SafeHtml | null = null;
-
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private maskaService: MaskaService,
     private toastr: ToastrService,
-    private title: Title, private meta: Meta,
-    private sanitizer: DomSanitizer
+    private title: Title, private meta: Meta
   ) { }
 
   ngOnInit(): void {
@@ -43,44 +38,6 @@ export class MaskaDetailComponent implements OnInit {
     if (this.maska && this.maska.slika.length > 0) {
       this.izabranaSlika = this.maska.slika[0];
     }
-
-    if (this.maska) {
-    this.izabranaSlika = this.maska.slika[0];
-
-    // SEO: title, description, keywords
-    this.title.setTitle(`${this.maska.naziv} - Dekorativna maska za klimu | KlimaMaske`);
-    this.meta.updateTag({
-      name: 'description',
-      content: `Kupite dekorativnu masku "${this.maska.naziv}" za vašu klimu. Kvalitetna izrada, više boja i jednostavna montaža.`
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content: `maska za klimu ${this.maska.naziv}, dekorativna maska za klimu, klima maska, ${this.maska.boja || ''}`
-    });
-
-    // Schema.org
-    const schemaJson = {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": this.maska.naziv,
-      "description": this.maska.opis,
-      "image": this.maska.slika.map((s: string) => `https://www.klimamaske.online/${s}`),
-      "sku": `MASKA-${this.maska.id}`,
-      "offers": {
-        "@type": "Offer",
-        "url": `https://www.klimamaske.online/maska/${this.maska.id}`,
-        "priceCurrency": "RSD",
-        "price": this.maska.cena,
-        "availability": "https://schema.org/InStock"
-      }
-    };
-
-    this.schemaData = this.sanitizer.bypassSecurityTrustHtml(`
-      <script type="application/ld+json">
-        ${JSON.stringify(schemaJson)}
-      </script>
-    `);
-  }
 
   }
 

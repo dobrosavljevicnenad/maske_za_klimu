@@ -1,59 +1,35 @@
-import { Component, Input, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MaskaService } from '../../services/maska.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  styleUrls: ['./product-card.component.scss'] // Ispravljeno sa 'styleUrl' na 'styleUrls'
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: any;
   isWishlisted = false;
   isCarted = false;
-  schemaData: SafeHtml | null = null;
 
   constructor(
     private maskaService: MaskaService,
     private dialog: MatDialog,
     private router: Router,
-    private sanitizer: DomSanitizer,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private title: Title, private meta: Meta
   ) {}
 
   ngOnInit() {
+       this.title.setTitle('Maske za klimu - Dekorativne, kvalitetne i povoljne maske za klimu');
+    this.meta.updateTag({ name: 'description', content: 'Kupite moderne maske za klimu. Ulepsajte svoj prostor elegantnim dekorativnim resenjima za spoljasnje jedinice klima uredjaja.' });
+    this.meta.updateTag({ name: 'keywords', content: 'maske za klimu, dekorativne maske za klimu, maske za spoljasnju jedinicu klime, klima maske, maske klima' });
     const cart = this.maskaService.getCart();
     const key = `${this.product.id}-${this.product.boja}`;
     this.isWishlisted = this.maskaService.getWishlist().has(this.product.id);
     this.isCarted = cart.has(key);
-
-    if (isPlatformBrowser(this.platformId)) {
-      const schemaJson = {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": this.product.naziv,
-        "description": this.product.opis,
-        "image": [`https://www.klimamaske.online/${this.product.slika[0]}`],
-        "sku": `MASKA-${this.product.id}`,
-        "offers": {
-          "@type": "Offer",
-          "url": `https://www.klimamaske.online/maska/${this.product.id}`,
-          "priceCurrency": "RSD",
-          "price": this.product.cena,
-          "availability": "https://schema.org/InStock"
-        }
-      };
-
-      this.schemaData = this.sanitizer.bypassSecurityTrustHtml(`
-        <script type="application/ld+json">
-        ${JSON.stringify(schemaJson)}
-        </script>
-      `);
-    }
   }
 
   toggleWishlist() {

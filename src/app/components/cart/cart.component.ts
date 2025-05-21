@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaskaService } from '../../services/maska.service';
 import { Router, RouterLink } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, PLATFORM_ID } from '@angular/core';
+
 
 @Component({
   selector: 'app-cart',
@@ -13,41 +11,17 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 })
 export class CartComponent implements OnInit {
   cartProducts: any[] = [];
-  schemaData: SafeHtml | null = null;
 
   editingColorIndex: number | null = null;
   newColorValue: string = '';
 
-  constructor(private maskaService: MaskaService, private router: Router,private title: Title, private meta: Meta,   private sanitizer: DomSanitizer,
-  @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private maskaService: MaskaService, private router: Router,private title: Title, private meta: Meta) {}
 
   ngOnInit(): void {
     this.title.setTitle('Maske za klimu - Dekorativne, kvalitetne i povoljne maske za klimu');
     this.meta.updateTag({ name: 'description', content: 'Kupite moderne maske za klimu. Ulepsajte svoj prostor elegantnim dekorativnim resenjima za spoljasnje jedinice klima uredjaja.' });
     this.meta.updateTag({ name: 'keywords', content: 'maske za klimu, dekorativne maske za klimu, maske za spoljasnju jedinicu klime, klima maske, maske klima' });
     this.loadCart();
-
-    if (isPlatformBrowser(this.platformId)) {
-  const itemListElements = this.cartProducts.map((product, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    url: `https://www.klimamaske.online/maska/${product.id}`,
-    name: product.naziv
-  }));
-
-  const schemaJson = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": itemListElements
-  };
-
-  this.schemaData = this.sanitizer.bypassSecurityTrustHtml(`
-    <script type="application/ld+json">
-    ${JSON.stringify(schemaJson)}
-    </script>
-  `);
-}
-
   }
 
   loadCart() {
