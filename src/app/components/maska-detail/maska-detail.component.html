@@ -1,36 +1,3 @@
-<title>Maske za klime | Dekorativne i zaštitne maske – moderan dizajn</title>
-<meta name="description" content="Kupite dekorativne maske za klime od plastificiranog lima – zaštita i estetika u jednom. Personalizovani dizajn, brza isporuka, boje po želji.">
-<meta name="keywords" content="maske za klime, dekorativne maske klima uređaja, zaštita spoljašnje jedinice, maske za spoljašnju klimu, limene maske klima">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="Dekorativne maske za klime | Moderan izgled & zaštita">
-<meta property="og:description" content="Unikatne, CNC sečene maske za klime izrađene od plastificiranog lima. Idealan spoj estetike i funkcionalnosti.">
-<meta property="og:image" content="URL_DO_SLIKE_PROIZVODA.jpg">
-<meta property="og:url" content="https://www.tvoj-sajt.com/proizvod/maska">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://www.tvoj-sajt.com/proizvod/maska">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "{{ maska.naziv }}",
-  "description": "{{ maska.opis }}",
-  "image": "{{ izabranaSlika }}",
-  "brand": {
-    "@type": "Brand",
-    "name": "Tvoj Brend"
-  },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "RSD",
-    "price": "{{ maska.cena }}",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.tvoj-sajt.com/proizvod/maska"
-  }
-}
-</script>
-
-
 <div *ngIf="maska" class="p-4">
   <div class="flex justify-between items-center p-4 bg-gray-100 mb-6">
     <!-- Leva strelica koja vodi na početnu stranu -->
@@ -64,7 +31,7 @@
       <div class="mb-4 w-[400px] h-[300px] relative">
         <img
           [src]="izabranaSlika"
-          [alt]="'Detaljan prikaz maske za klimu - ' + maska.naziv"
+          alt="Glavna slika"
           class="absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-md"
         />
         <button
@@ -80,7 +47,6 @@
         <img
           *ngFor="let slika of maska.slika"
           [src]="slika"
-          [alt]="'Maska za klimu - ' + maska.naziv"
           (click)="promeniSliku(slika)"
           class="w-20 h-20 object-cover rounded cursor-pointer border-2"
           [ngClass]="{ 'border-blue-500': izabranaSlika === slika, 'border-transparent': izabranaSlika !== slika }"
@@ -185,7 +151,7 @@ class="absolute left-4 text-white text-4xl font-bold hover:scale-110 transition"
 </button>
   <img
     [src]="izabranaSlika"
-    [alt]="'Dekorativna maska za klimu - ' + maska.naziv"
+    alt="Uvećana slika"
     class="max-w-full max-h-full rounded-lg shadow-lg"
     (click)="$event.stopPropagation()"
   />

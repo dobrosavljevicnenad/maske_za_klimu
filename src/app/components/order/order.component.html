@@ -2,22 +2,18 @@
   <div class="bg-white shadow-xl rounded-2xl p-10 border border-gray-200">
     <h2 class="!text-4xl !font-extrabold !text-gray-900 !mb-8 !text-center">Završi narudžbinu</h2>
 
-    <form (ngSubmit)="submitOrder()" #orderForm="ngForm" class="space-y-6" aria-label="Forma za narudžbinu">
+    <form (ngSubmit)="submitOrder()" #orderForm="ngForm" class="space-y-6">
       <!-- Podaci o korisniku -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label for="firstName" class="text-gray-700 font-semibold">Ime</label>
           <input id="firstName" name="firstName" type="text" [(ngModel)]="order.firstName" required
-            autocomplete="given-name"
-            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md"
-          />
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md" />
         </div>
         <div>
           <label for="lastName" class="text-gray-700 font-semibold">Prezime</label>
           <input id="lastName" name="lastName" type="text" [(ngModel)]="order.lastName" required
-            autocomplete="family-name"
-            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md"
-          />
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md" />
         </div>
       </div>
 
@@ -25,29 +21,25 @@
         <div>
           <label for="phone" class="text-gray-700 font-semibold">Telefon</label>
           <input id="phone" name="phone" type="tel" [(ngModel)]="order.phone" required
-            autocomplete="tel"
-            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md"
-          />
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md" />
         </div>
         <div>
           <label for="address" class="text-gray-700 font-semibold">Adresa</label>
           <input id="address" name="address" type="text" [(ngModel)]="order.address" required
-            autocomplete="street-address"
-            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md"
-          />
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-md" />
         </div>
       </div>
 
       <!-- Korpa -->
       <div class="mt-6 bg-gray-50 p-6 rounded-xl shadow-md border border-gray-300">
-        <h3 class="!text-xl !font-bold !mb-4">Tvoja korpa</h3>
+        <h3 class="text-xl font-bold mb-4">Tvoja korpa</h3>
         <div *ngIf="cartProducts.length > 0" class="space-y-4">
           <div *ngFor="let product of cartProducts" class="flex items-center bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <img class="w-20 h-20 object-cover rounded-lg" [src]="product.slika[0]" [alt]="'Maska za klimu - ' + product.naziv">
-            <div class="ml-4 flex-1 space-y-1">
-              <h4 class="!text-lg !font-semibold !mb-1">{{ product.naziv }}</h4>
-              <p class="text-gray-500 mt-1">Boja: {{ product.boja }}</p>
-              <p class="text-gray-600">{{ getDiscountPrice(product) * product.kolicina }} RSD</p>
+            <img class="w-20 h-20 object-cover rounded-lg" [src]="product.slika[0]" alt="Product Image">
+            <div class="ml-4 flex-1">
+              <h3 class="!text-lg !font-semibold">{{ product.naziv }}</h3>
+              <p class="!text-gray-500 !mt-1">Boja: {{ product.boja }}</p>
+              <p class="!text-gray-600">{{ getDiscountPrice(product) * product.kolicina }} RSD</p>
             </div>
           </div>
         </div>
@@ -55,14 +47,7 @@
       </div>
 
       <!-- Dugme za potvrdu -->
-      <button
-        type="submit"
-        [disabled]="!orderForm.form.valid"
-        class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-lg"
-        [attr.aria-disabled]="!orderForm.form.valid ? 'true' : 'false'"
-      >
-        Potvrdi narudžbinu
-      </button>
+      <button type="submit" [disabled]="!orderForm.form.valid" class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-lg">Potvrdi narudžbinu</button>
     </form>
   </div>
 </div>
