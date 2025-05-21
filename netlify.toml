@@ -1,4 +1,0 @@
-[build]
-command = "ng build"
-functions = "netlify/functions"
-publish = "dist/maske_za_klimu/browser"
