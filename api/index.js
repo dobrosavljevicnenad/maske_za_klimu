@@ -1,5 +1,3 @@
-const server = require('../dist/maske_za_klimu/server/main');
+const server = require('../dist/maske-za-klimu/server/main');
 
-module.exports = (req, res) => {
-  server.app()(req, res);
-};
+module.exports = server.app();
