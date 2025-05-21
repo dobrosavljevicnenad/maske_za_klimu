@@ -2,7 +2,7 @@
   "name": "maske-za-klimu",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "ng": "ng" ,
     "start": "ng serve",
     "build-dev": "npm run build:ssr",
     "watch": "ng build --watch --configuration development",

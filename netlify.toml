@@ -3,6 +3,7 @@
   functions = "netlify/functions"
   publish = "dist/maske_za_klimu/browser"
 
+
 [[redirects]]
 from = "/*"
 to = "/index.html"
