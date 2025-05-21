@@ -17,7 +17,6 @@ export class ProductCardComponent implements OnInit {
   isCarted = false;
   schemaData: SafeHtml | null = null;
 
-
   constructor(
     private maskaService: MaskaService,
     private dialog: MatDialog,
@@ -44,16 +43,10 @@ export class ProductCardComponent implements OnInit {
           "@type": "Offer",
           "url": `https://www.klimamaske.online/maska/${this.product.id}`,
           "priceCurrency": "RSD",
-          "price": this.getDiscountPrice(this.product),
+          "price": this.product.cena,
           "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.5,
-          "reviewCount": 23
         }
       };
-
 
       this.schemaData = this.sanitizer.bypassSecurityTrustHtml(`
         <script type="application/ld+json">
