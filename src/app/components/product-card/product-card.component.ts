@@ -36,13 +36,12 @@ export class ProductCardComponent implements OnInit {
       const schemaJson = {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": `Zaštitna maska za spoljnu jedinicu - ${this.product.naziv}`,
+        "name": this.product.naziv,
         "description": this.product.opis,
         "image": [`https://www.klimamaske.online/${this.product.slika[0]}`],
         "sku": `MASKA-${this.product.id}`,
         "offers": {
           "@type": "Offer",
-          "name": `Zaštitna maska za spoljnu jedinicu - ${this.product.name}`,
           "url": `https://www.klimamaske.online/maska/${this.product.id}`,
           "priceCurrency": "RSD",
           "price": this.getDiscountPrice(this.product),

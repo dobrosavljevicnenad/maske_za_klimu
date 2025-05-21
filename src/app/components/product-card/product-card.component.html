@@ -1,11 +1,4 @@
-<div class="group bg-white rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-full max-w-sm mx-auto"
-     itemscope itemtype="https://schema.org/Product">
-
-  <!-- Skriveni meta podaci za SEO -->
-  <meta itemprop="name" [content]="product.naziv">
-  <meta itemprop="description" [content]="product.opis">
-  <meta itemprop="sku" [content]="product.id">
-  <meta itemprop="image" [content]="product.slika[0]">
+<div class="group bg-white rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-full max-w-sm mx-auto" itemscope itemtype="https://schema.org/Product">
 
   <!-- Slika sa badge-evima -->
   <a [routerLink]="['/maska', product.id]"
@@ -38,26 +31,21 @@
     </p>
 
     <!-- Cena -->
-    <div class="flex items-center justify-between mt-4"
-         itemprop="offers"
-         itemscope
-         itemtype="https://schema.org/Offer">
-      <meta itemprop="priceCurrency" content="RSD">
-      <meta itemprop="availability" content="https://schema.org/InStock">
-      <meta itemprop="url" [content]="'https://www.klimamaske.online/maska/' + product.id">
-      <meta itemprop="name" [content]="product.naziv">
-
+    <div class="flex items-center justify-between mt-4" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
       <div>
         <p *ngIf="product.popust > 0" class="text-sm text-gray-400 line-through">
-          RSD <span itemprop="price">{{ product.cena | number:'1.0-0' }}</span>
+          <span itemprop="priceCurrency" content="RSD">RSD</span>
+          <span itemprop="price">{{ product.cena | number:'1.0-0' }}</span>
         </p>
         <p class="text-lg sm:text-xl font-semibold text-gray-700">
           {{ getDiscountPrice(product) }} RSD
         </p>
+        <meta itemprop="availability" content="https://schema.org/InStock" />
       </div>
 
       <!-- Akcione ikone -->
       <div class="flex gap-3">
+        <!-- Wishlist -->
         <button (click)="toggleWishlist()"
                 class="transition-colors duration-200"
                 [title]="isWishlisted ? 'Ukloni iz liste želja' : 'Dodaj u listu želja'"
@@ -69,6 +57,7 @@
           <mat-icon>{{ isWishlisted ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
 
+        <!-- Dodaj u korpu -->
         <button (click)="toggleCart()"
                 class="transition-colors duration-200"
                 title="Dodaj proizvod {{ product.naziv }} u korpu"
@@ -84,6 +73,4 @@
     </div>
   </div>
 </div>
-
-<!-- JSON-LD schema ubacena kao property -->
 <div [innerHTML]="schemaData"></div>
